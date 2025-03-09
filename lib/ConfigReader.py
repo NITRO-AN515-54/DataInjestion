@@ -17,4 +17,9 @@ def get_pyspark_config(env):
     pyspark_conf = SparkConf()
     for (key, val) in config.items(env):
         pyspark_conf.set(key, val)
+
+    # Set the JDBC driver path
+    pyspark_conf.set("spark.jars",
+                     "C:\\Users\\e140856\\OneDrive - Mastercard\\Documents\\Office work\\Python To Report server\\DataInjestion\\dbJars\\mssql-jdbc-12.8.1.jre8.jar, C:\\Users\\e140856\\OneDrive - Mastercard\\Documents\\Office work\\Python To Report server\\DataInjestion\\dbJars\\ojdbc17.jar")
+
     return pyspark_conf

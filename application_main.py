@@ -1,4 +1,6 @@
 import sys
+from datasourceConfig.SQLserver import connect_to_sql
+from datasourceConfig.Oracle import connect_to_oracle
 from lib import DataManipulation, DataReader, Utils
 from pyspark.sql.functions import *
 
@@ -14,7 +16,13 @@ if __name__ == '__main__':
 
     spark = Utils.get_spark_session(job_run_env)
 
-    print("Created Spark Session")
+    connect_to_sql(spark, job_run_env)
+
+    print("SQL server connection established")
+
+    connect_to_oracle(spark, job_run_env)
+
+    print("Oracle server connection established")
 
     orders_df = DataReader.read_orders(spark,job_run_env)
 
